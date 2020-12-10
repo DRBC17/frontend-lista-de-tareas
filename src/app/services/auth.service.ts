@@ -27,10 +27,18 @@ export class AuthService {
   }
   logOut(): void {
     localStorage.removeItem('token');
-    this.router.navigate(['/tasks']);
+    this.router.navigate(['/signin']);
   }
 
   getToken(): string {
     return localStorage.getItem('token');
+  }
+
+  //* Correos
+  confirmationEmail(token: string): Observable<any> {
+    return this.http.post<any>(
+      `${this.endpoint}/token/confirmation/${token}`,
+      {}
+    );
   }
 }
