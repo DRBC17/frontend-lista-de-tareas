@@ -5,10 +5,13 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { expand } from '../../animations/app.animation';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
+  animations: [ expand()],
 })
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
