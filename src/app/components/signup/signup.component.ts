@@ -21,20 +21,22 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //* ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
   emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+  passwordPattern = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,26}$/;
 
   private buildForm() {
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      password: [
+        '',
+        [Validators.required, Validators.pattern(this.passwordPattern)],
+      ],
       // repeatpassword: ['', [Validators.required, Validators.email]],
     });
   }
 
   onSubmit() {
-    if (this.signupForm.invalid)
-      return this.toastr.warning('Hello world!', 'Toastr fun!');
+    // return this.toastr.warning('Hello world!', 'Toastr fun!');
 
     this.toastr.success('Hello world!', 'Toastr fun!');
     // console.log(this.signupForm.value);

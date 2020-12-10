@@ -1,8 +1,8 @@
 <div class="col-md-5 mx-auto">
   <div class="card bg-white">
-    <div class="card-header">Registrarse</div>
+    <div class="card-header bg-dark text-white">Registrarse</div>
     <div class="card-body">
-      <form [formGroup]="signupForm">
+      <form novalidate [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
           <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
@@ -29,9 +29,8 @@
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
             [class.is-invalid]="
-            signupForm.get('password').invalid && signupForm.get('password').dirty
-            " [class.is-valid]="
-            signupForm.get('password').valid && signupForm.get('password').dirty
+            signupForm.get('password').invalid && (signupForm.get('password').dirty)" [class.is-valid]="
+            signupForm.get('password').valid && (signupForm.get('password').dirty)
             " />
           <!-- Inicio de alerta -->
           <div class="d-alert-danger">
@@ -40,13 +39,15 @@
               La contraseña es requerida
             </div>
             <div class="container-error-message"
-              *ngIf="signupForm.get('password').hasError('minLength') && signupForm.get('password').dirty">
-              La contraseña debe tener al menos 4 caracteres de largo
+              *ngIf="signupForm.get('password').hasError('pattern') && signupForm.get('password').dirty">
+              La contraseña debe tener:<br> > Entre 6 y 26 caracteres<br> > Al menos un numero<br> > Al menos una
+              minúscula <br> > Al menos una mayúscula
             </div>
+
           </div>
 
           <!-- Fin de alerta -->
-          {{signupForm.get('password').errors | json}}
+          <!-- {{signupForm.get('password').errors | json}} -->
         </div>
 
 
