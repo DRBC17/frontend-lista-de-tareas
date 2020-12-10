@@ -54,7 +54,6 @@ export class SignupComponent implements OnInit {
 
     this.authService.signUp(user).subscribe(
       (res) => {
-        console.log(res);
         this.toastr.success(`${res.message}`, 'Mensaje');
         this.router.navigate(['/signin']);
       },
