@@ -1,10 +1,10 @@
 <div class="col-md-6 mx-auto abs-center" [@expand]>
   <div class="card bg-white">
-    <div class="card-header bg-dark text-white text-center">Iniciar sesión</div>
-    <div class="card-body">
+    <div class="card-header bg-dark text-white text-center h4">Iniciar sesión</div>
+    <div class="card-body m-4">
       <form novalidate [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm.value)">
         <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
+          <label for="email" class="form-label h4">Correo electrónico</label>
           <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
                 signinForm.get('email').invalid && signinForm.get('email').touched
               " [class.is-valid]="
@@ -18,7 +18,6 @@
                 ">
               El correo electrónico es requerido
             </div>
-
             <div class="container-error-message" *ngIf="
                   signinForm.get('email').hasError('pattern') &&
                   signinForm.get('email').dirty
@@ -30,7 +29,7 @@
           <!-- {{signupForm.get('email').errors | json}} -->
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <label for="exampleInputPassword1" class="form-label h4">Contraseña</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
             [class.is-invalid]="
                 signinForm.get('password').invalid &&
@@ -52,11 +51,16 @@
           <!-- Fin de alerta -->
           <!-- {{signupForm.get('password').errors | json}} -->
         </div>
-
-        <button class="btn btn-primary" [disabled]="signinForm.invalid">
+        <button class="btn btn-primary d-grid col-6 mx-auto" [disabled]="signinForm.invalid">
           Iniciar sesión
         </button>
+
+
       </form>
+      <hr>
+      <div class="text-center col-auto ms-auto">
+        <a class="h6 nav-link" [routerLink]="['/signup']">Restablecer contraseña</a>
+      </div>
     </div>
   </div>
 </div>

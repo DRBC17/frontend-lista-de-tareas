@@ -1,10 +1,10 @@
-<div class="col-md-6 mx-auto" [@expand]>
+<div class="col-md-6 mx-auto abs-center" [@expand]>
   <div class="card bg-white">
-    <div class="card-header bg-dark text-white text-center">Registrarse</div>
-    <div class="card-body">
+    <div class="card-header bg-dark text-white h4 text-center">Registrarse</div>
+    <div class="card-body m-4">
       <form novalidate [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
         <div class="mb-3">
-          <label for="email" class="form-label">Correo electrónico</label>
+          <label for="email" class="form-label h4">Correo electrónico</label>
           <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
               signupForm.get('email').invalid && (signupForm.get('email').dirty || signupForm.get('email').touched)
             " [class.is-valid]="
@@ -30,7 +30,7 @@
           <!-- {{signupForm.get('email').errors | json}} -->
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+          <label for="exampleInputPassword1" class="form-label h4">Contraseña</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
             [class.is-invalid]="
               signupForm.get('password').invalid &&
@@ -64,7 +64,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="repeatPassword" class="form-label">Confirmar contraseña</label>
+          <label for="repeatPassword" class="form-label h4">Confirmar contraseña</label>
           <input type="password" class="form-control" id="repeatPassword" formControlName="repeatPassword"
             [class.is-invalid]="
               signupForm.get('repeatPassword').invalid &&
@@ -87,10 +87,14 @@
           <!-- {{signupForm.get('password').errors | json}} -->
         </div>
 
-        <button class="btn btn-primary" [disabled]="signupForm.invalid">
+        <button class="btn btn-primary d-grid col-6 mx-auto" [disabled]="signupForm.invalid">
           Registrarse
         </button>
       </form>
+      <hr>
+      <div class="text-center col-auto ms-auto">
+        <a class="h6 nav-link" [routerLink]="['/signin']">Iniciar sesión</a>
+      </div>
     </div>
   </div>
 </div>
