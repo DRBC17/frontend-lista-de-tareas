@@ -11,14 +11,14 @@ export class AuthService {
   private endpoint: string;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.endpoint = 'https://' + window.location.hostname + ':3000/api';
+    this.endpoint = 'http://' + window.location.hostname + ':3000/api';
   }
 
-  signUp(user: User): Observable<string> {
+  signUp(user: User): Observable<any> {
     return this.http.post<any>(`${this.endpoint}/user/signup`, user);
   }
 
-  signIn(user: User): Observable<string> {
+  signIn(user: User): Observable<any> {
     return this.http.post<any>(`${this.endpoint}/user/signin`, user);
   }
 

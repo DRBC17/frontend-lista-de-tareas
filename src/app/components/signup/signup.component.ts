@@ -5,8 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +18,12 @@ import { User } from 'src/app/models/user';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
-  constructor(private toastr: ToastrService, private formBuilder: FormBuilder) {
+  constructor(
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.buildForm();
   }
 
@@ -37,11 +44,26 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(formValue: User) {
-    console.log(formValue);
     if (formValue.password != formValue.repeatPassword)
       return this.toastr.error('Las contraseñas deben ser iguales', 'Error');
 
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    const user: User = {
+      email: formValue.email,
+      password: formValue.password,
+    };
+
+    this.authService.signUp(user).subscribe(
+      (res) => {
+        console.log(res);
+        this.toastr.success(`${res.message}`, 'Mensaje');
+        this.router.navigate(['/signin']);
+      },
+      (err) => {
+        const message = err.error.message;
+        this.toastr.error(`${message}`, 'Error');
+      }
+    );
+
     // console.log(this.signupForm.value);
   }
 }
