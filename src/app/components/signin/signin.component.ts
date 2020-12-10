@@ -25,7 +25,7 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(valueForm) {
     // return this.toastr.warning('Hello world!', 'Toastr fun!');
 
     this.toastr.success('Hello world!', 'Toastr fun!');

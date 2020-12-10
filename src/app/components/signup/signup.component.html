@@ -1,24 +1,28 @@
-<div class="col-md-5 mx-auto">
+<div class="col-md-6 mx-auto">
   <div class="card bg-white">
-    <div class="card-header bg-dark text-white">Registrarse</div>
+    <div class="card-header bg-dark text-white text-center">Registrarse</div>
     <div class="card-body">
-      <form novalidate [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <form novalidate [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
         <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
+          <label for="email" class="form-label">Correo electrónico</label>
           <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
-            signupForm.get('email').invalid && signupForm.get('email').dirty
+              signupForm.get('email').invalid && (signupForm.get('email').dirty || signupForm.get('email').touched)
             " [class.is-valid]="
-            signupForm.get('email').valid && signupForm.get('email').dirty
+              signupForm.get('email').valid && (signupForm.get('email').dirty || signupForm.get('email').touched)
             " />
           <!-- Inicio de alerta -->
           <div class="d-alert-danger">
-            <div class="container-error-message"
-              *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').dirty">
+            <div class="container-error-message" *ngIf="
+                signupForm.get('email').hasError('required') &&
+                signupForm.get('email').touched
+              ">
               El correo electrónico es requerido
             </div>
 
-            <div class="container-error-message"
-              *ngIf="signupForm.get('email').hasError('pattern') && signupForm.get('email').dirty">
+            <div class="container-error-message" *ngIf="
+                signupForm.get('email').hasError('pattern') &&
+                signupForm.get('email').dirty
+              ">
               El correo electrónico no es valido
             </div>
           </div>
@@ -26,32 +30,66 @@
           <!-- {{signupForm.get('email').errors | json}} -->
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
             [class.is-invalid]="
-            signupForm.get('password').invalid && (signupForm.get('password').dirty)" [class.is-valid]="
-            signupForm.get('password').valid && (signupForm.get('password').dirty)
+              signupForm.get('password').invalid &&
+              (signupForm.get('password').dirty || signupForm.get('password').touched)
+            " [class.is-valid]="
+              signupForm.get('password').valid &&
+              (signupForm.get('password').dirty || signupForm.get('passwordl').touched)
             " />
           <!-- Inicio de alerta -->
           <div class="d-alert-danger">
-            <div class="container-error-message"
-              *ngIf="signupForm.get('password').hasError('required') && signupForm.get('password').dirty">
+            <div class="container-error-message" *ngIf="
+                signupForm.get('password').hasError('required') &&
+                signupForm.get('password').touched
+              ">
               La contraseña es requerida
             </div>
-            <div class="container-error-message"
-              *ngIf="signupForm.get('password').hasError('pattern') && signupForm.get('password').dirty">
-              La contraseña debe tener:<br> > Entre 6 y 26 caracteres<br> > Al menos un numero<br> > Al menos una
-              minúscula <br> > Al menos una mayúscula
+            <div class="container-error-message" *ngIf="
+                signupForm.get('password').hasError('pattern') &&
+                signupForm.get('password').dirty
+              ">
+              La contraseña debe tener:<br />
+              > Entre 6 y 26 caracteres<br />
+              > Al menos un numero<br />
+              > Al menos una minúscula <br />
+              > Al menos una mayúscula
             </div>
-
           </div>
 
           <!-- Fin de alerta -->
           <!-- {{signupForm.get('password').errors | json}} -->
         </div>
 
+        <div class="mb-3">
+          <label for="repeatPassword" class="form-label">Confirmar contraseña</label>
+          <input type="password" class="form-control" id="repeatPassword" formControlName="repeatPassword"
+            [class.is-invalid]="
+              signupForm.get('repeatPassword').invalid &&
+              signupForm.get('repeatPassword').touched
+            " [class.is-valid]="
+              signupForm.get('repeatPassword').valid &&
+              signupForm.get('repeatPassword').touched
+            " />
+          <!-- Inicio de alerta -->
+          <div class="d-alert-danger">
+            <div class="container-error-message" *ngIf="
+                signupForm.get('repeatPassword').hasError('required') &&
+                signupForm.get('repeatPassword').touched
+              ">
+              La contraseña de confirmación es requerida
+            </div>
+          </div>
 
-        <button class="btn btn-primary" [disabled]="signupForm.invalid">Registrarse</button>
+          <!-- Fin de alerta -->
+          <!-- {{signupForm.get('password').errors | json}} -->
+        </div>
+
+        <button class="btn btn-primary" [disabled]="signupForm.invalid">
+          Registrarse
+        </button>
       </form>
     </div>
   </div>

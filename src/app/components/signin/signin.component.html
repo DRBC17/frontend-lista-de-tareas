@@ -1,1 +1,62 @@
-<p>signin works!</p>
+<div class="col-md-6 mx-auto abs-center">
+    <div class="card bg-white">
+      <div class="card-header bg-dark text-white text-center">Iniciar sesión</div>
+      <div class="card-body">
+        <form novalidate [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm.value)">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
+                signinForm.get('email').invalid && signinForm.get('email').touched
+              " [class.is-valid]="
+                signinForm.get('email').valid && signinForm.get('email').touched
+              " />
+            <!-- Inicio de alerta -->
+            <div class="d-alert-danger">
+              <div class="container-error-message" *ngIf="
+                  signinForm.get('email').hasError('required') &&
+                  signinForm.get('email').touched
+                ">
+                El correo electrónico es requerido
+              </div>
+  
+              <div class="container-error-message" *ngIf="
+                  signinForm.get('email').hasError('pattern') &&
+                  signinForm.get('email').dirty
+                ">
+                El correo electrónico no es valido
+              </div>
+            </div>
+            <!-- Fin de alerta -->
+            <!-- {{signupForm.get('email').errors | json}} -->
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
+              [class.is-invalid]="
+                signinForm.get('password').invalid &&
+                signinForm.get('password').touched
+              " [class.is-valid]="
+                signinForm.get('password').valid &&
+                signinForm.get('password').touched
+              " />
+            <!-- Inicio de alerta -->
+            <div class="d-alert-danger">
+              <div class="container-error-message" *ngIf="
+                  signinForm.get('password').hasError('required') &&
+                  signinForm.get('password').touched
+                ">
+                La contraseña es requerida
+              </div>
+            </div>
+  
+            <!-- Fin de alerta -->
+            <!-- {{signupForm.get('password').errors | json}} -->
+          </div>
+  
+          <button class="btn btn-primary" [disabled]="signinForm.invalid">
+            Iniciar sesión
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>

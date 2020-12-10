@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-signup',
@@ -31,12 +32,14 @@ export class SignupComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(this.passwordPattern)],
       ],
-      // repeatpassword: ['', [Validators.required, Validators.email]],
+      repeatPassword: ['', Validators.required],
     });
   }
 
-  onSubmit() {
-    // return this.toastr.warning('Hello world!', 'Toastr fun!');
+  onSubmit(formValue: User) {
+    console.log(formValue);
+    if (formValue.password != formValue.repeatPassword)
+      return this.toastr.error('Las contraseñas deben ser iguales', 'Error');
 
     this.toastr.success('Hello world!', 'Toastr fun!');
     // console.log(this.signupForm.value);
