@@ -13,16 +13,45 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" *ngIf="authService.loggedIn()">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a
+            class="nav-link"
+            [routerLink]="['/tasks']"
+            routerLinkActive="active"
+            >Tasks</a
+          >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['/signin']"
+              routerLinkActive="active-link"
+              >Signin</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['/signup']"
+              routerLinkActive="active"
+              >Signup</a
+            >
+          </li>
+        </ng-container>
+        <ng-template #loggedIn>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="cursor: pointer"
+              (click)="authService.logOut()"
+              >Logout</a
+            >
+          </li>
+        </ng-template>
       </ul>
     </div>
   </div>
