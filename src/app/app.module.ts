@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 //? Módulos
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 //? Componentes
 import { AppComponent } from './app.component';
@@ -17,10 +20,31 @@ import { AuthGuard } from './guards/auth.guard';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, SigninComponent, SignupComponent, TasksComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    SigninComponent,
+    SignupComponent,
+    TasksComponent,
+    FooterComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      progressBar: true,
+      // tapToDismiss: true,
+    }),
+  ],
   providers: [
     AuthService,
     TaskService,

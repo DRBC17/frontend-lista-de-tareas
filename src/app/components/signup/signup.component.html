@@ -1,1 +1,57 @@
-<p>signup works!</p>
+<div class="col-md-5 mx-auto">
+  <div class="card bg-white">
+    <div class="card-header">Registrarse</div>
+    <div class="card-body">
+      <form [formGroup]="signupForm">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
+            signupForm.get('email').invalid && signupForm.get('email').dirty
+            " [class.is-valid]="
+            signupForm.get('email').valid && signupForm.get('email').dirty
+            " />
+          <!-- Inicio de alerta -->
+          <div class="d-alert-danger">
+            <div class="container-error-message"
+              *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').dirty">
+              El correo electrónico es requerido
+            </div>
+
+            <div class="container-error-message"
+              *ngIf="signupForm.get('email').hasError('pattern') && signupForm.get('email').dirty">
+              El correo electrónico no es valido
+            </div>
+          </div>
+          <!-- Fin de alerta -->
+          <!-- {{signupForm.get('email').errors | json}} -->
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
+            [class.is-invalid]="
+            signupForm.get('password').invalid && signupForm.get('password').dirty
+            " [class.is-valid]="
+            signupForm.get('password').valid && signupForm.get('password').dirty
+            " />
+          <!-- Inicio de alerta -->
+          <div class="d-alert-danger">
+            <div class="container-error-message"
+              *ngIf="signupForm.get('password').hasError('required') && signupForm.get('password').dirty">
+              La contraseña es requerida
+            </div>
+            <div class="container-error-message"
+              *ngIf="signupForm.get('password').hasError('minLength') && signupForm.get('password').dirty">
+              La contraseña debe tener al menos 4 caracteres de largo
+            </div>
+          </div>
+
+          <!-- Fin de alerta -->
+          {{signupForm.get('password').errors | json}}
+        </div>
+
+
+        <button class="btn btn-primary" [disabled]="signupForm.invalid">Registrarse</button>
+      </form>
+    </div>
+  </div>
+</div>
