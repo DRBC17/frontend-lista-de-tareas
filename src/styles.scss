@@ -27,8 +27,6 @@ $success-border: #5adf70;
 
 .d-alert-danger {
   color: $alert-color;
-  // background: $alert-background;
-  // border-color: $alert-border;
   margin-bottom: 0.3125rem;
 }
 .container-error-message {
@@ -41,4 +39,13 @@ $success-border: #5adf70;
 
 .is-invalid {
   border-left: 5px solid #a94442; /* red */
+}
+$blanco-hueso: #f0f0f0;
+
+.bg-bone {
+  background-color: $blanco-hueso;
+}
+
+.text-bone {
+  color: $blanco-hueso;
 }
