@@ -25,13 +25,7 @@ export class SignupComponent implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit(): void {
-    this.verifiedLoggdIn();
-  }
-
-  verifiedLoggdIn() {
-    if (this.authService.loggedIn) return this.router.navigate(['/tasks']);
-  }
+  ngOnInit(): void {}
 
   emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
   passwordPattern = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,26}$/;
