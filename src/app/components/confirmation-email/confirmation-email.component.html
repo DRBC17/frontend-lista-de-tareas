@@ -33,13 +33,14 @@
                     <!-- Fin de alerta -->
                     <!-- {{signupForm.get('email').errors | json}} -->
                 </div>
-                <button class="btn btn-primary d-grid col-6 mx-auto" [disabled]="confirmationForm.invalid">
+                <button class="btn btn-primary d-grid col-6 mx-auto"
+                    style="margin-top: 2.1875rem;margin-bottom: 2.1875rem;" [disabled]="confirmationForm.invalid">
                     Enviar correo
                 </button>
             </form>
             <hr />
-            <div class="d-grid col-6 mx-auto text-center">
-                <a class="btn btn-outline-secondary" [routerLink]="['/signin']">Enviar correo</a>
+            <div class="d-grid col-6 mx-auto text-center" style="margin-top: 2.1875rem;">
+                <a class="btn btn-outline-secondary" [routerLink]="['/signin']">Iniciar sesión</a>
             </div>
         </div>
     </div>

@@ -57,12 +57,12 @@
           <!-- Fin de alerta -->
           <!-- {{signupForm.get('password').errors | json}} -->
         </div>
-        <button class="btn btn-primary d-grid col-6 mx-auto" [disabled]="signinForm.invalid">
+        <button class="btn btn-primary d-grid col-6 mx-auto" style="margin-top: 2.1875rem;margin-bottom: 2.1875rem;" [disabled]="signinForm.invalid">
           Iniciar sesión
         </button>
       </form>
       <hr />
-      <div class="d-grid col-6 mx-auto text-center">
+      <div class="d-grid col-6 mx-auto text-center" style="margin-top: 2.1875rem;">
         <a class="btn btn-outline-secondary m-1" [routerLink]="['/restore_password']">Restablecer contraseña</a>
         <a class="btn btn-outline-secondary m-1" [routerLink]="['/confirmation']">Verificar cuenta</a>
       </div>
