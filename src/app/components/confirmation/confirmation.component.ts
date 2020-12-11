@@ -33,11 +33,13 @@ export class ConfirmationComponent implements OnInit {
         this.router.navigate(['/signin']);
       },
       (err) => {
+        if (err.error.message != undefined) {
+          this.toastr.info(
+            `Debe solicitar un correo electrónico de verificación nuevo`
+          );
+        }
         const message = err.error.message || err.statusText;
 
-        this.toastr.info(
-          `Debe solicitar un correo electrónico de verificación nuevo`
-        );
         this.toastr.error(`${message}`, 'Alerta');
         this.router.navigate(['/signin']);
       }

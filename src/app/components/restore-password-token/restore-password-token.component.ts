@@ -51,9 +51,13 @@ export class RestorePasswordTokenComponent implements OnInit {
       },
       (err) => {
         this.verified = false;
-        const message = err.error.message;
-  
-        this.toastr.info(`Debe solicitar un correo electrónico de recuperación nuevo`);
+
+        if (err.error.message != undefined) {
+          this.toastr.info(
+            `Debe solicitar un correo electrónico de recuperación nuevo`
+          );
+        }
+        const message = err.error.message || err.statusText;
         this.toastr.error(`${message}`, 'Alerta');
         this.router.navigate(['/signin']);
       }
