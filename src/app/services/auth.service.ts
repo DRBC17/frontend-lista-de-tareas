@@ -59,7 +59,7 @@ export class AuthService {
   ): Observable<any> {
     return this.http.post<any>(
       `${this.endpoint}/token/restore_password/${token}`,
-      { restorePassword }
+      { password: restorePassword.password }
     );
   }
 }

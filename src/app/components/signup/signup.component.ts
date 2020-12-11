@@ -25,7 +25,13 @@ export class SignupComponent implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.verifiedLoggdIn();
+  }
+
+  verifiedLoggdIn() {
+    if (this.authService.loggedIn) return this.router.navigate(['/tasks']);
+  }
 
   emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
   passwordPattern = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,26}$/;
@@ -43,7 +49,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit(formValue: User) {
     if (formValue.password != formValue.repeatPassword)
-      return this.toastr.error('Las contraseñas deben ser iguales', 'Error');
+      return this.toastr.error('Las contraseñas deben ser iguales', 'Alerta');
 
     const user: User = {
       email: formValue.email,

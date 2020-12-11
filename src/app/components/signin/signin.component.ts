@@ -13,7 +13,6 @@ import { expand } from '../../animations/app.animation';
   styleUrls: ['./signin.component.scss'],
   animations: [expand()],
 })
-
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
 
@@ -53,6 +52,5 @@ export class SigninComponent implements OnInit {
         this.toastr.error(`${message}`, 'Alerta');
       }
     );
-    return false;
   }
 }
