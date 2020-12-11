@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { RestorePasswordTokenComponent } from './components/restore-password-token/restore-password-token.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'restore_password',
     component: RestorePasswordComponent,
+    canActivate: [SigninGuard],
+  },
+  {
+    path: 'confirmation',
+    component: ConfirmationEmailComponent,
     canActivate: [SigninGuard],
   },
   {

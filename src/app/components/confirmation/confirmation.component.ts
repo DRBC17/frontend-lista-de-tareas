@@ -27,7 +27,7 @@ export class ConfirmationComponent implements OnInit {
   verifyToken() {
     const reqToken = this.activatedRoute.snapshot.params.token;
 
-    this.authService.confirmationEmail(reqToken).subscribe(
+    this.authService.confirmation(reqToken).subscribe(
       (res) => {
         this.toastr.success(`${res.message}`, 'Mensaje');
         this.router.navigate(['/signin']);

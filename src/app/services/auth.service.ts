@@ -36,13 +36,18 @@ export class AuthService {
   }
 
   //* Correos
-  confirmationEmail(token: string): Observable<any> {
+  confirmation(token: string): Observable<any> {
     return this.http.post<any>(
       `${this.endpoint}/token/confirmation/${token}`,
       {}
     );
   }
-
+  confirmationEmail(restorePassword: RestorePassword): Observable<any> {
+    return this.http.post<any>(`${this.endpoint}/token/send_confirmation`, {
+      email: restorePassword.email,
+    });
+  }
+  //send_confirmation
   restorePassword(restorePassword: RestorePassword): Observable<any> {
     return this.http.post<any>(`${this.endpoint}/token/send_restore_password`, {
       email: restorePassword.email,

@@ -1,0 +1,46 @@
+<div class="col-md-6 mx-auto abs-center" [@expand]>
+    <div class="card bg-white">
+        <div class="card-header bg-dark text-white text-center h4 p-3">
+            Correo de verificación
+        </div>
+        <div class="card-body m-4">
+            <form novalidate [formGroup]="confirmationForm" (ngSubmit)="onSubmit(confirmationForm.value)">
+                <div class="mb-3">
+                    <label for="email" class="form-label h4">Correo electrónico</label>
+                    <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
+              confirmationForm.get('email').invalid &&
+              (confirmationForm.get('email').dirty ||
+                confirmationForm.get('email').touched)
+            " [class.is-valid]="
+              confirmationForm.get('email').valid &&
+              confirmationForm.get('email').dirty
+            " />
+                    <!-- Inicio de alerta -->
+                    <div class="d-alert-danger">
+                        <div class="container-error-message" *ngIf="
+                confirmationForm.get('email').hasError('required') &&
+              ( confirmationForm.get('email').touched ||  confirmationForm.get('email').dirty)
+              ">
+                            El correo electrónico es requerido
+                        </div>
+                        <div class="container-error-message" *ngIf="
+                confirmationForm.get('email').hasError('pattern') &&
+                confirmationForm.get('email').dirty
+              ">
+                            El correo electrónico no es valido
+                        </div>
+                    </div>
+                    <!-- Fin de alerta -->
+                    <!-- {{signupForm.get('email').errors | json}} -->
+                </div>
+                <button class="btn btn-primary d-grid col-6 mx-auto" [disabled]="confirmationForm.invalid">
+                    Enviar correo
+                </button>
+            </form>
+            <hr />
+            <div class="d-grid col-6 mx-auto text-center">
+                <a class="btn btn-outline-secondary" [routerLink]="['/signin']">Enviar correo</a>
+            </div>
+        </div>
+    </div>
+</div>

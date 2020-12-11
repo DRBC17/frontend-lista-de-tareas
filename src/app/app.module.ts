@@ -26,6 +26,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { RestorePasswordTokenComponent } from './components/restore-password-token/restore-password-token.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 import { SigninGuard } from './guards/signin.guard';
+import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SigninGuard } from './guards/signin.guard';
     ConfirmationComponent,
     RestorePasswordTokenComponent,
     RestorePasswordComponent,
+    ConfirmationEmailComponent,
   ],
   imports: [
     BrowserModule,
