@@ -7,6 +7,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { AuthGuard } from './guards/auth.guard';
+import { SigninGuard } from './guards/signin.guard';
 const routes: Routes = [
   {
     path: '',
@@ -16,10 +17,12 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+    canActivate: [SigninGuard],
   },
   {
     path: 'signin',
     component: SigninComponent,
+    canActivate: [SigninGuard],
   },
   {
     path: 'confirmation/:token',
@@ -32,6 +35,7 @@ const routes: Routes = [
   {
     path: 'restore_password',
     component: RestorePasswordComponent,
+    canActivate: [SigninGuard],
   },
   {
     path: 'tasks',

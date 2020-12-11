@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 //? Componentes
@@ -25,6 +25,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { RestorePasswordTokenComponent } from './components/restore-password-token/restore-password-token.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
+import { SigninGuard } from './guards/signin.guard';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { RestorePasswordComponent } from './components/restore-password/restore-
   providers: [
     AuthService,
     TaskService,
+    SigninGuard,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
