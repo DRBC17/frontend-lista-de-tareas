@@ -43,11 +43,23 @@ export class AuthService {
     );
   }
 
-  restorePassword(user: RestorePassword): Observable<any> {
-    console.log(user.email);
-
+  restorePassword(restorePassword: RestorePassword): Observable<any> {
     return this.http.post<any>(`${this.endpoint}/token/send_restore_password`, {
-      email: user.email,
+      email: restorePassword.email,
     });
+  }
+
+  verifiedToken(token: string): Observable<any> {
+    return this.http.get<any>(`${this.endpoint}/token/verified_token/${token}`);
+  }
+
+  changePassword(
+    token: string,
+    restorePassword: RestorePassword
+  ): Observable<any> {
+    return this.http.post<any>(
+      `${this.endpoint}/token/restore_password/${token}`,
+      { restorePassword }
+    );
   }
 }

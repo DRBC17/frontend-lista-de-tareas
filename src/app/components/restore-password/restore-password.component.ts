@@ -45,7 +45,7 @@ export class RestorePasswordComponent implements OnInit {
       },
       (err) => {
         const message = err.error.message;
-        this.toastr.error(`${message}`, 'Error');
+        this.toastr.error(`${message}`, 'Alerta');
       }
     );
     return false;
