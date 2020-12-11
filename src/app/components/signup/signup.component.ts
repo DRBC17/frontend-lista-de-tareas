@@ -62,7 +62,7 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['/signin']);
       },
       (err) => {
-        const message = err.error.message;
+        const message = err.error.message || err.statusText;
         this.toastr.error(`${message}`, 'Alerta');
       }
     );

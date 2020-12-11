@@ -48,7 +48,9 @@ export class SigninComponent implements OnInit {
         this.router.navigate(['/tasks']);
       },
       (err) => {
-        const message = err.error.message;
+        console.log(err);
+
+        const message = err.error.message || err.statusText;
         this.toastr.error(`${message}`, 'Alerta');
       }
     );
