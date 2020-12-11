@@ -2,20 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/models/user';
+import { RestorePassword } from 'src/app/models/restore-password';
 import { AuthService } from 'src/app/services/auth.service';
-
 import { expand } from '../../animations/app.animation';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss'],
+  selector: 'app-restore-password',
+  templateUrl: './restore-password.component.html',
+  styleUrls: ['./restore-password.component.scss'],
   animations: [expand()],
 })
-
-export class SigninComponent implements OnInit {
-  signinForm: FormGroup;
+export class RestorePasswordComponent implements OnInit {
+  restorePasswordForm: FormGroup;
 
   constructor(
     private toastr: ToastrService,
@@ -31,22 +29,19 @@ export class SigninComponent implements OnInit {
   emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
   private buildForm() {
-    this.signinForm = this.formBuilder.group({
+    this.restorePasswordForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      password: ['', Validators.required],
     });
   }
 
-  onSubmit(formValue: User) {
-    const user: User = {
+  onSubmit(formValue: RestorePassword) {
+    const user: RestorePassword = {
       email: formValue.email,
-      password: formValue.password,
     };
-    this.authService.signIn(user).subscribe(
+    this.authService.restorePassword(user).subscribe(
       (res) => {
-        localStorage.setItem('token', res.token);
-        this.toastr.success(`Bienvenido`, 'Mensaje');
-        this.router.navigate(['/tasks']);
+        this.toastr.success(res.message, 'Mensaje');
+        this.router.navigate(['/signin']);
       },
       (err) => {
         const message = err.error.message;

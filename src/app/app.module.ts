@@ -23,6 +23,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { RestorePasswordTokenComponent } from './components/restore-password-token/restore-password-token.component';
+import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     TasksComponent,
     FooterComponent,
     ConfirmationComponent,
+    RestorePasswordTokenComponent,
+    RestorePasswordComponent,
   ],
   imports: [
     BrowserModule,

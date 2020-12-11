@@ -1,27 +1,31 @@
-<div class="col-md-6 mx-auto abs-center" [@expand]>
+<div class="col-md-6 mx-auto" [@expand]>
   <div class="card bg-white">
-    <div class="card-header bg-dark text-white text-center h4">Iniciar sesión</div>
+    <div class="card-header bg-dark text-white text-center h4 p-3">
+      Iniciar sesión
+    </div>
     <div class="card-body m-4">
       <form novalidate [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm.value)">
         <div class="mb-3">
           <label for="email" class="form-label h4">Correo electrónico</label>
           <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
-                signinForm.get('email').invalid && signinForm.get('email').touched
-              " [class.is-valid]="
-                signinForm.get('email').valid && signinForm.get('email').touched
-              " />
+              signinForm.get('email').invalid &&
+              (signinForm.get('email').touched || signinForm.get('email').dirty)
+            " [class.is-valid]="
+              signinForm.get('email').valid && signinForm.get('email').dirty
+            " />
           <!-- Inicio de alerta -->
           <div class="d-alert-danger">
             <div class="container-error-message" *ngIf="
-                  signinForm.get('email').hasError('required') &&
-                  signinForm.get('email').touched
-                ">
+                signinForm.get('email').hasError('required') &&
+                (signinForm.get('email').touched ||
+                  signinForm.get('email').dirty)
+              ">
               El correo electrónico es requerido
             </div>
             <div class="container-error-message" *ngIf="
-                  signinForm.get('email').hasError('pattern') &&
-                  signinForm.get('email').dirty
-                ">
+                signinForm.get('email').hasError('pattern') &&
+                signinForm.get('email').dirty
+              ">
               El correo electrónico no es valido
             </div>
           </div>
@@ -32,18 +36,20 @@
           <label for="exampleInputPassword1" class="form-label h4">Contraseña</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
             [class.is-invalid]="
-                signinForm.get('password').invalid &&
-                signinForm.get('password').touched
-              " [class.is-valid]="
-                signinForm.get('password').valid &&
-                signinForm.get('password').touched
-              " />
+              signinForm.get('password').invalid &&
+              (signinForm.get('password').touched ||
+                signinForm.get('password').dirty)
+            " [class.is-valid]="
+              signinForm.get('password').valid &&
+              signinForm.get('password').dirty
+            " />
           <!-- Inicio de alerta -->
           <div class="d-alert-danger">
             <div class="container-error-message" *ngIf="
-                  signinForm.get('password').hasError('required') &&
-                  signinForm.get('password').touched
-                ">
+                signinForm.get('password').hasError('required') &&
+                (signinForm.get('password').touched ||
+                  signinForm.get('password').dirty)
+              ">
               La contraseña es requerida
             </div>
           </div>
@@ -54,12 +60,10 @@
         <button class="btn btn-primary d-grid col-6 mx-auto" [disabled]="signinForm.invalid">
           Iniciar sesión
         </button>
-
-
       </form>
-      <hr>
-      <div class="text-center col-auto ms-auto">
-        <a class="h6 nav-link" [routerLink]="['/signup']">Restablecer contraseña</a>
+      <hr />
+      <div class="d-grid col-6 mx-auto text-center">
+        <a class="btn btn-outline-secondary" [routerLink]="['/restore_password']">Restablecer contraseña</a>
       </div>
     </div>
   </div>

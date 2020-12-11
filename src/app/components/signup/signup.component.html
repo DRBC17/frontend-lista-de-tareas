@@ -1,20 +1,24 @@
 <div class="col-md-6 mx-auto abs-center" [@expand]>
   <div class="card bg-white">
-    <div class="card-header bg-dark text-white h4 text-center">Registrarse</div>
+    <div class="card-header bg-dark text-white h4 text-center p-3">
+      Registrarse
+    </div>
     <div class="card-body m-4">
       <form novalidate [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
         <div class="mb-3">
           <label for="email" class="form-label h4">Correo electrónico</label>
           <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
-              signupForm.get('email').invalid && (signupForm.get('email').dirty || signupForm.get('email').touched)
+              signupForm.get('email').invalid &&
+              (signupForm.get('email').dirty || signupForm.get('email').touched)
             " [class.is-valid]="
-              signupForm.get('email').valid && (signupForm.get('email').dirty || signupForm.get('email').touched)
+              signupForm.get('email').valid &&
+              signupForm.get('email').dirty 
             " />
           <!-- Inicio de alerta -->
           <div class="d-alert-danger">
             <div class="container-error-message" *ngIf="
                 signupForm.get('email').hasError('required') &&
-                signupForm.get('email').touched
+                (signupForm.get('email').dirty || signupForm.get('email').touched)
               ">
               El correo electrónico es requerido
             </div>
@@ -34,16 +38,18 @@
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
             [class.is-invalid]="
               signupForm.get('password').invalid &&
-              (signupForm.get('password').dirty || signupForm.get('password').touched)
+              (signupForm.get('password').dirty ||
+                signupForm.get('password').touched)
             " [class.is-valid]="
               signupForm.get('password').valid &&
-              (signupForm.get('password').dirty || signupForm.get('passwordl').touched)
+              signupForm.get('password').dirty 
             " />
           <!-- Inicio de alerta -->
           <div class="d-alert-danger">
             <div class="container-error-message" *ngIf="
                 signupForm.get('password').hasError('required') &&
-                signupForm.get('password').touched
+                (signupForm.get('password').dirty ||
+                signupForm.get('password').touched)
               ">
               La contraseña es requerida
             </div>
@@ -68,16 +74,18 @@
           <input type="password" class="form-control" id="repeatPassword" formControlName="repeatPassword"
             [class.is-invalid]="
               signupForm.get('repeatPassword').invalid &&
-              signupForm.get('repeatPassword').touched
+              (signupForm.get('repeatPassword').dirty ||
+                signupForm.get('repeatPassword').touched)
             " [class.is-valid]="
               signupForm.get('repeatPassword').valid &&
-              signupForm.get('repeatPassword').touched
+              signupForm.get('repeatPassword').dirty
             " />
           <!-- Inicio de alerta -->
           <div class="d-alert-danger">
             <div class="container-error-message" *ngIf="
                 signupForm.get('repeatPassword').hasError('required') &&
-                signupForm.get('repeatPassword').touched
+                (signupForm.get('repeatPassword').dirty ||
+                signupForm.get('repeatPassword').touched)
               ">
               La contraseña de confirmación es requerida
             </div>
@@ -91,9 +99,9 @@
           Registrarse
         </button>
       </form>
-      <hr>
-      <div class="text-center col-auto ms-auto">
-        <a class="h6 nav-link" [routerLink]="['/signin']">Iniciar sesión</a>
+      <hr />
+      <div class="d-grid col-6 mx-auto text-center">
+        <a class="btn btn-outline-secondary" [routerLink]="['/signin']">Iniciar sesión</a>
       </div>
     </div>
   </div>
