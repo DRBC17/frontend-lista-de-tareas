@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit(formValue: User) {
     if (formValue.password != formValue.repeatPassword)
-      return this.toastr.error('Las contraseñas deben ser iguales', 'Alerta');
+      return this.toastr.warning('Las contraseñas deben ser iguales', 'Alerta');
 
     const user: User = {
       email: formValue.email,

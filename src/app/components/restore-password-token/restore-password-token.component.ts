@@ -52,9 +52,9 @@ export class RestorePasswordTokenComponent implements OnInit {
       (err) => {
         this.verified = false;
         const message = err.error.message;
+  
+        this.toastr.info(`Debe solicitar un correo electrónico de recuperación nuevo`);
         this.toastr.error(`${message}`, 'Alerta');
-        if (this.authService.loggedIn) return this.router.navigate(['/tasks']);
-
         this.router.navigate(['/signin']);
       }
     );
@@ -62,7 +62,7 @@ export class RestorePasswordTokenComponent implements OnInit {
 
   onSubmit(formValue: RestorePassword) {
     if (formValue.password != formValue.repeatPassword)
-      return this.toastr.error('Las contraseñas deben ser iguales', 'Error');
+      return this.toastr.warning('Las contraseñas deben ser iguales', 'Error');
 
     const reqToken = this.activatedRoute.snapshot.params.token;
     const user: RestorePassword = {

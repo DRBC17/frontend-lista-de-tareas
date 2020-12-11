@@ -49,6 +49,7 @@ import { SigninGuard } from './guards/signin.guard';
     ToastrModule.forRoot({
       closeButton: true,
       progressBar: true,
+      timeOut: 8000,
       // tapToDismiss: true,
     }),
   ],

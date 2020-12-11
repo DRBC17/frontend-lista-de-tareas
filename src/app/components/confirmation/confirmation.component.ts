@@ -34,6 +34,10 @@ export class ConfirmationComponent implements OnInit {
       },
       (err) => {
         const message = err.error.message || err.statusText;
+
+        this.toastr.info(
+          `Debe solicitar un correo electrónico de verificación nuevo`
+        );
         this.toastr.error(`${message}`, 'Alerta');
         this.router.navigate(['/signin']);
       }
