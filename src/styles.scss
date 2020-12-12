@@ -54,9 +54,9 @@ $blanco-hueso: #f0f0f0;
   position: relative;
   display: block;
   padding: 1.25rem 1.75rem;
-  margin-top: 0.40rem;
+  margin-top: 0.4rem;
   background-color: #fff;
-//   border: 1px solid rgba(0, 0, 0, 0.125);
+  //   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .d-list-group {
@@ -64,19 +64,34 @@ $blanco-hueso: #f0f0f0;
   flex-direction: column;
 }
 
-
 $background-color-h: #d1c4e9;
 $border-color-h: #654ea3;
 
 .highlight {
   background-color: $background-color-h;
   border: 1px solid $border-color-h;
+  cursor: pointer;
   z-index: 1;
   transform: scale(1.01);
 }
-
-.group-items{
+.group-items {
+  padding-left: 45px;
   display: flex;
   flex-direction: row;
 }
 
+@media (max-width: 768px) {
+  .group-items {
+    padding-left: 15px;
+    // background-color: red;
+  }
+}
+
+.footer {
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
