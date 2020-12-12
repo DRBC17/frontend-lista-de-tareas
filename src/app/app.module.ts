@@ -28,6 +28,7 @@ import { RestorePasswordComponent } from './components/restore-password/restore-
 import { SigninGuard } from './guards/signin.guard';
 import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { MomentModule } from 'ngx-moment';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { HighlightDirective } from './directives/highlight.directive';
       timeOut: 8000,
       // tapToDismiss: true,
     }),
+    MomentModule,
   ],
   providers: [
     AuthService,

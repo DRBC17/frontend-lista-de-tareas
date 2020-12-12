@@ -21,7 +21,7 @@ export class TasksComponent implements OnInit {
     private toastr: ToastrService,
     // private formBuilder: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getTasks();
@@ -39,16 +39,33 @@ export class TasksComponent implements OnInit {
     );
   }
 
+  //TODO Preguntar antes de hacer el cambio
   changeState(task: Task) {
-    this.taskService.changeState(task).subscribe(
-      (res) => {
+    Swal.fire({
+      title: 'Cambiar estado de tarea',
+      text: '¿Esta seguro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0d6efd',
+      cancelButtonColor: '#dc3545',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.taskService.changeState(task).subscribe(
+          (res) => {
+            this.toastr.success(`${res.message}`, 'Mensaje');
+            this.getTasks();
+          },
+          (err) => {
+            const message = err.error.message || err.statusText;
+            this.toastr.error(`${message}`, 'Alerta');
+          }
+        );
+      } else {
         this.getTasks();
-      },
-      (err) => {
-        const message = err.error.message || err.statusText;
-        this.toastr.error(`${message}`, 'Alerta');
       }
-    );
+    });
   }
 
   deleteTask(task: Task) {
