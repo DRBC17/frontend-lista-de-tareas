@@ -30,7 +30,7 @@ export class TasksComponent implements OnInit {
   getTasks() {
     this.taskService.getTasks().subscribe(
       (res) => {
-        this.tasks = res.tasks;
+        this.tasks = res.tasks.reverse();
       },
       (err) => {
         const message = err.error.message || err.statusText;

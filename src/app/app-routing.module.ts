@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { RestorePasswordTokenComponent } from './components/restore-password-token/restore-password-token.component';
 import { RestorePasswordComponent } from './components/restore-password/restore-password.component';
 import { SigninComponent } from './components/signin/signin.component';
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: 'tasks',
     component: TasksComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create_task',
+    component: CreateTaskComponent,
     canActivate: [AuthGuard],
   },
 ];

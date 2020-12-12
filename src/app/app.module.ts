@@ -29,6 +29,8 @@ import { SigninGuard } from './guards/signin.guard';
 import { ConfirmationEmailComponent } from './components/confirmation-email/confirmation-email.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { MomentModule } from 'ngx-moment';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { UpdateTaskComponent } from './components/update-task/update-task.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { MomentModule } from 'ngx-moment';
     RestorePasswordComponent,
     ConfirmationEmailComponent,
     HighlightDirective,
+    CreateTaskComponent,
+    UpdateTaskComponent,
   ],
   imports: [
     BrowserModule,

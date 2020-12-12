@@ -2,7 +2,7 @@
     <div class="card-header bg-dark text-bone text-center h4 p-3">Mis tareas</div>
     <div class="card-body container">
 
-        <a [routerLink]="['/tasks']" class="btn btn-outline-primary ms-auto d-grid" style="width: 120px;" >
+        <a [routerLink]="['/create_task']" class="btn btn-outline-primary ms-auto d-grid" style="width: 120px;">
             Agregar
         </a>
         <!-- Inicio listar tareas -->
@@ -13,16 +13,18 @@
             <div class="d-list-group">
                 <div *ngFor="let task of tasks">
                     <div class="d-list-group-item group-items" *ngIf="!task.completed" appHighlight [@expand]>
-                        <div>
+                        <div style="width: 90%;">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheck"
                                     [checked]="task.completed" (click)="changeState(task)" />
 
-                                <label for="flexSwitchCheck"> {{ task.title }}</label>
+                                <label for="flexSwitchCheck" class="text-break"> {{ task.title }}</label>
                             </div>
-                            {{ task.updatedAt | amLocale: "es" | amTimeAgo | titlecase }}
+                            <div class="m-1 text-primary">
+                                {{ task.updatedAt | amLocale: "es" | amTimeAgo | titlecase }}
+                            </div>
                         </div>
-                        <div class="ms-auto">
+                        <div class="ms-auto" style="width: 10%;">
                             <button class="btn btn-outline-success m-1">
                                 <i class="fas fa-pen"></i>
                             </button>
@@ -42,16 +44,19 @@
             <div class="d-list-group">
                 <div *ngFor="let task of tasks">
                     <div class="d-list-group-item group-items" *ngIf="task.completed" appHighlight [@expand]>
-                        <div>
+                        <div style="width: 90%;">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheck"
                                     [checked]="task.completed" (click)="changeState(task)" />
 
-                                <label for="flexSwitchCheck"> {{ task.title }}</label>
+                                <label for="flexSwitchCheck" class="text-break"
+                                    [class.text-decoration-line-through]="task.completed"> {{ task.title }}</label>
                             </div>
-                            {{ task.updatedAt | amLocale: "es" | amTimeAgo | titlecase }}
+                            <div class="m-1 text-primary">
+                                {{ task.updatedAt | amLocale: "es" | amTimeAgo | titlecase }}
+                            </div>
                         </div>
-                        <div class="ms-auto">
+                        <div class="ms-auto" style="width: 10%;">
                             <button class="btn btn-outline-success m-1" [disabled]="task.completed">
                                 <i class="fas fa-pen"></i>
                             </button>
@@ -66,6 +71,6 @@
         <!-- Fin listar tareas -->
     </div>
 </div>
-<a [routerLink]="['/tasks']" class="float border border-5 border-primary rounded-circle">
+<a [routerLink]="['/create_task']" class="float border border-5 border-primary rounded-circle">
     <i class="fa fa-plus my-float"></i>
 </a>
