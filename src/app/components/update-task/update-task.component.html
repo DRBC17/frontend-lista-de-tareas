@@ -1,1 +1,74 @@
-<p>update-task works!</p>
+<div class="col-md-6 mx-auto" [@expand]>
+    <div class="card bg-bone">
+        <div class="card-header bg-dark text-center h4 p-3 text-bone">
+            Actualizar tarea
+        </div>
+        <div class="card-body m-4">
+            <form novalidate [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm.value)">
+                <div class="mb-3">
+                    <label for="title" class="form-label h4">Titulo</label>
+                    <input type="title" class="form-control" id="title" formControlName="title" [class.is-invalid]="
+              updateForm.get('title').invalid &&
+              (updateForm.get('title').touched || updateForm.get('title').dirty)
+            " [class.is-valid]="
+              updateForm.get('title').valid && updateForm.get('title').dirty
+            " />
+                    <!-- Inicio de alerta -->
+                    <div class="d-alert-danger">
+                        <div class="container-error-message" *ngIf="
+                updateForm.get('title').hasError('required') &&
+                (updateForm.get('title').touched ||
+                  updateForm.get('title').dirty)
+              ">
+                            El titulo es requerido
+                        </div>
+                        <div class="container-error-message" *ngIf="
+                updateForm.get('title').hasError('minlength') &&
+                updateForm.get('title').dirty
+              ">
+                            El titulo debe tener al menos 2 caracteres
+                        </div>
+                    </div>
+                    <!-- Fin de alerta -->
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label h4">Descripción</label>
+                    <input type="description" class="form-control" id="description" formControlName="description"
+                        [class.is-invalid]="
+              updateForm.get('description').invalid &&
+              (updateForm.get('description').touched ||
+                updateForm.get('description').dirty)
+            " [class.is-valid]="
+              updateForm.get('description').valid &&
+              updateForm.get('description').dirty
+            " />
+                    <!-- Inicio de alerta -->
+                    <div class="d-alert-danger">
+                        <div class="container-error-message" *ngIf="
+                updateForm.get('description').hasError('required') &&
+                (updateForm.get('description').touched ||
+                  updateForm.get('description').dirty)
+              ">
+                            La descripción es requerida
+                        </div>
+                        <div class="container-error-message" *ngIf="
+                updateForm.get('description').hasError('minlength') &&
+                updateForm.get('description').dirty
+              ">
+                            La descripción debe tener al menos 2 caracteres
+                        </div>
+                    </div>
+                    <!-- Fin de alerta -->
+                </div>
+                <button class="btn btn-primary d-grid col-6 mx-auto"
+                    style="margin-top: 2.1875rem; margin-bottom: 2.1875rem" [disabled]="updateForm.invalid">
+                    Actualizar
+                </button>
+            </form>
+            <hr />
+            <div class="d-grid col-6 mx-auto text-center" style="margin-top: 2.1875rem">
+                <a class="btn btn-outline-secondary" [routerLink]="['/tasks']">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>

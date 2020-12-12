@@ -9,6 +9,7 @@ import { Task } from '../models/task';
 })
 export class TaskService {
   private endpoint: string;
+  public task: Task;
 
   constructor(private http: HttpClient, private router: Router) {
     this.endpoint = 'http://' + window.location.hostname + ':3000/api/list';
@@ -17,8 +18,8 @@ export class TaskService {
   getTasks(): Observable<any> {
     return this.http.get<any>(`${this.endpoint}/tasks`);
   }
-  getTask(task: Task): Observable<any> {
-    return this.http.get<any>(`${this.endpoint}/task/${task._id}`);
+  getTask(id: string): Observable<any> {
+    return this.http.get<any>(`${this.endpoint}/task/${id}`);
   }
 
   createTask(task: Task): Observable<any> {
@@ -31,7 +32,7 @@ export class TaskService {
 
   deleteTask(task: Task): Observable<any> {
     console.log(task._id);
-    
+
     return this.http.delete<any>(`${this.endpoint}/task/${task._id}`);
   }
 

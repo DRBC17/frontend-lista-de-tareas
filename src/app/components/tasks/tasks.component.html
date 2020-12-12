@@ -25,9 +25,9 @@
                             </div>
                         </div>
                         <div class="ms-auto" style="width: 10%;">
-                            <button class="btn btn-outline-success m-1">
+                            <a class="btn btn-outline-success m-1" [routerLink]="[ '/update_task/'+task._id ]">
                                 <i class="fas fa-pen"></i>
-                            </button>
+                            </a>
                             <button class="btn btn-outline-danger m-1" (click)="deleteTask(task)">
                                 <i class="fas fa-trash"></i>
                             </button>

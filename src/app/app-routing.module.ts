@@ -8,6 +8,7 @@ import { RestorePasswordComponent } from './components/restore-password/restore-
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { UpdateTaskComponent } from './components/update-task/update-task.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SigninGuard } from './guards/signin.guard';
 const routes: Routes = [
@@ -52,6 +53,11 @@ const routes: Routes = [
   {
     path: 'create_task',
     component: CreateTaskComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'update_task/:id',
+    component: UpdateTaskComponent,
     canActivate: [AuthGuard],
   },
 ];
