@@ -96,4 +96,9 @@ export class TasksComponent implements OnInit {
     });
   }
 
+  viewTask(id: string) {
+    // this.toastr.success(`${id}`, 'Mensaje');
+    this.router.navigate([`/task/${id}`]);
+  }
+
 }

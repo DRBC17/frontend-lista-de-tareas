@@ -23,11 +23,11 @@ export class UpdateTaskComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-
+    this.buildForm();
   }
 
   ngOnInit(): void {
-    this.buildForm();
+
     this.loadTask();
   }
 
@@ -35,7 +35,9 @@ export class UpdateTaskComponent implements OnInit {
 
     // console.log(this.activatedRoute.snapshot.params.id);
 
+
     const id = this.activatedRoute.snapshot.params.id;
+    // console.log(id);
     this.taskService.getTask(id).subscribe(
       (res) => {
 

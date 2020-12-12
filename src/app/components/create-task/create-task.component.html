@@ -33,15 +33,15 @@
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label h4">Descripción</label>
-                    <input type="description" class="form-control" id="description" formControlName="description"
-                        [class.is-invalid]="
+                    <textarea type="description" class="form-control" id="description" formControlName="description"
+                        rows="7" style="overflow:auto;resize:none" [class.is-invalid]="
               createForm.get('description').invalid &&
               (createForm.get('description').touched ||
                 createForm.get('description').dirty)
             " [class.is-valid]="
               createForm.get('description').valid &&
               createForm.get('description').dirty
-            " />
+            "></textarea>
                     <!-- Inicio de alerta -->
                     <div class="d-alert-danger">
                         <div class="container-error-message" *ngIf="
