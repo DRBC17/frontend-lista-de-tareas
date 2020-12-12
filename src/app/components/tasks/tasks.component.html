@@ -1,18 +1,47 @@
 <div class="card mx-auto bg-bone">
-    <div class="card-header bg-dark text-bone text-center h4 p-3">
-        Mis tareas
-    </div>
+    <div class="card-header bg-dark text-bone text-center h4 p-3">Mis tareas</div>
     <div class="card-body container">
-        <div class="d-list-group">
-            <label class="d-list-group-item group-items" appHighlight *ngFor="let task of tasks">
-                <div class="form-check form-switch">
-                    <input class="form-check-input"  type="checkbox" id="flexSwitchCheck">
+        <!-- Inicio listar tareas -->
+        <div class="mb-3">
+            <!-- Tareas Pendientes -->
+            <h3 class="m-1">Pendientes</h3>
+            <div class="d-list-group">
+                <div *ngFor="let task of tasks">
+                    <label class="d-list-group-item group-items" *ngIf="!task.completed" appHighlight>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheck" />
 
-                    <label class="form-check-title" for="flexSwitchCheck"> {{task.title}}</label>
+                            <label class="form-check-title" for="flexSwitchCheck">
+                                {{ task.title }}</label>
+                        </div>
+                        <div class="ms-auto">
+                            <button class="btn btn-outline-success m-1">Editar</button>
+                            <button class="btn btn-outline-danger m-1">Eliminar</button>
+                        </div>
+                    </label>
                 </div>
-                <div class="ms-auto"> <button class="btn btn-outline-success m-1">Editar</button> <button
-                        class="btn btn-outline-danger m-1">Eliminar </button> </div>
-            </label>
+            </div>
         </div>
+        <!-- Tareas completadas -->
+        <div class="mb-3">
+            <h3 class="m-1">Completadas</h3>
+            <div class="d-list-group">
+                <div *ngFor="let task of tasks">
+                    <label class="d-list-group-item group-items" *ngIf="task.completed" appHighlight>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheck" />
+
+                            <label class="form-check-title" for="flexSwitchCheck">
+                                {{ task.title }}</label>
+                        </div>
+                        <div class="ms-auto">
+                            <button class="btn btn-outline-success m-1">Editar</button>
+                            <button class="btn btn-outline-danger m-1">Eliminar</button>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- Fin listar tareas -->
     </div>
 </div>
