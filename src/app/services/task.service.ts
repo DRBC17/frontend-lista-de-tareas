@@ -26,8 +26,8 @@ export class TaskService {
     return this.http.post<any>(`${this.endpoint}/task`, task);
   }
 
-  updateTask(task: Task): Observable<any> {
-    return this.http.put<any>(`${this.endpoint}/task/${task._id}`, task);
+  updateTask(id: string, task: Task): Observable<any> {
+    return this.http.put<any>(`${this.endpoint}/task/${id}`, task);
   }
 
   deleteTask(task: Task): Observable<any> {

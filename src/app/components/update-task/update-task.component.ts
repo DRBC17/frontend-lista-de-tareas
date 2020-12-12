@@ -15,7 +15,6 @@ import { expand, flyInOut } from '../../animations/app.animation';
 export class UpdateTaskComponent implements OnInit {
 
   updateForm: FormGroup;
-  private task: Task;
 
   constructor(
     private toastr: ToastrService,
@@ -40,7 +39,11 @@ export class UpdateTaskComponent implements OnInit {
     this.taskService.getTask(id).subscribe(
       (res) => {
 
-        this.task = res;
+        const task = res;
+        this.updateForm.patchValue({
+          title: task.title,
+          description: task.description
+        })
 
 
       },
@@ -60,7 +63,8 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   onSubmit(formValue: Task) {
-    this.taskService.updateTask(formValue).subscribe(
+    const id = this.activatedRoute.snapshot.params.id;
+    this.taskService.updateTask(id, formValue).subscribe(
       (res) => {
         this.toastr.success(`${res.message}`, 'Mensaje');
         this.router.navigate(['/tasks']);
