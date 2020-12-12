@@ -1,29 +1,18 @@
 <div class="card mx-auto bg-bone">
-   <div class="card-header bg-dark text-bone text-center h4 p-3">
-       Mis tareas
-   </div>
-   <div class="card-body container">
-    <div class="list-group">
-        <label class="list-group-item pt-4 pb-4">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Cras justo odio
-        </label>
-        <label class="list-group-item pt-4 pb-4">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Dapibus ac facilisis in
-        </label>
-        <label class="list-group-item pt-4 pb-4">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Morbi leo risus
-        </label>
-        <label class="list-group-item pt-4 pb-4">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Porta ac consectetur ac
-        </label>
-        <label class="list-group-item pt-4 pb-4">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Vestibulum at eros
-        </label>
+    <div class="card-header bg-dark text-bone text-center h4 p-3">
+        Mis tareas
     </div>
-   </div>
+    <div class="card-body container">
+        <div class="d-list-group">
+            <label class="d-list-group-item group-items" appHighlight *ngFor="let task of tasks">
+                <div class="form-check form-switch">
+                    <input class="form-check-input"  type="checkbox" id="flexSwitchCheck">
+
+                    <label class="form-check-title" for="flexSwitchCheck"> {{task.title}}</label>
+                </div>
+                <div class="ms-auto"> <button class="btn btn-outline-success m-1">Editar</button> <button
+                        class="btn btn-outline-danger m-1">Eliminar </button> </div>
+            </label>
+        </div>
+    </div>
 </div>

@@ -50,3 +50,33 @@ $blanco-hueso: #f0f0f0;
   color: $blanco-hueso;
 }
 
+.d-list-group-item {
+  position: relative;
+  display: block;
+  padding: 1.25rem 1.75rem;
+  margin-top: 0.40rem;
+  background-color: #fff;
+//   border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.d-list-group {
+  display: flex;
+  flex-direction: column;
+}
+
+
+$background-color-h: #d1c4e9;
+$border-color-h: #654ea3;
+
+.highlight {
+  background-color: $background-color-h;
+  border: 1px solid $border-color-h;
+  z-index: 1;
+  transform: scale(1.01);
+}
+
+.group-items{
+  display: flex;
+  flex-direction: row;
+}
+

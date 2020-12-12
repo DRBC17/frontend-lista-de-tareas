@@ -48,6 +48,5 @@ export class RestorePasswordComponent implements OnInit {
         this.toastr.error(`${message}`, 'Alerta');
       }
     );
-    return false;
   }
 }
