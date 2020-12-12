@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RestorePassword } from 'src/app/models/restore-password';
 import { AuthService } from 'src/app/services/auth.service';
+import { expand } from '../../animations/app.animation';
 
 @Component({
   selector: 'app-confirmation-email',
   templateUrl: './confirmation-email.component.html',
   styleUrls: ['./confirmation-email.component.scss'],
+  animations: [expand()],
 })
 export class ConfirmationEmailComponent implements OnInit {
   confirmationForm: FormGroup;
