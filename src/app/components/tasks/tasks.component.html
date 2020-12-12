@@ -7,18 +7,19 @@
             <h3 class="m-1">Pendientes</h3>
             <div class="d-list-group">
                 <div *ngFor="let task of tasks">
-                    <label class="d-list-group-item group-items" *ngIf="!task.completed" appHighlight [@expand]>
+                    <div class="d-list-group-item group-items" *ngIf="!task.completed" appHighlight [@expand]>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheck" />
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheck"
+                                [checked]="task.completed" (click)="changeState(task)" />
 
-                            <label class="form-check-title" for="flexSwitchCheck">
+                            <label for="flexSwitchCheck">
                                 {{ task.title }}</label>
                         </div>
                         <div class="ms-auto">
-                            <button class="btn btn-outline-success m-1">Editar</button>
-                            <button class="btn btn-outline-danger m-1">Eliminar</button>
+                            <button class="btn btn-outline-success m-1"><i class="fas fa-pen"></i></button>
+                            <button class="btn btn-outline-danger m-1"><i class="fas fa-trash"></i></button>
                         </div>
-                    </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,18 +28,21 @@
             <h3 class="m-1">Completadas</h3>
             <div class="d-list-group">
                 <div *ngFor="let task of tasks">
-                    <label class="d-list-group-item group-items" *ngIf="task.completed" appHighlight>
+                    <div class="d-list-group-item group-items" *ngIf="task.completed" appHighlight [@expand]>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheck" />
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheck"
+                                [checked]="task.completed" (click)="changeState(task)" />
+
 
                             <label class="form-check-title" for="flexSwitchCheck">
                                 {{ task.title }}</label>
                         </div>
                         <div class="ms-auto">
-                            <button class="btn btn-outline-success m-1">Editar</button>
-                            <button class="btn btn-outline-danger m-1">Eliminar</button>
+                            <button class="btn btn-outline-success m-1" [disabled]="task.completed"><i
+                                    class="fas fa-pen"></i></button>
+                            <button class="btn btn-outline-danger m-1"><i class="fas fa-trash"></i></button>
                         </div>
-                    </label>
+                    </div>
                 </div>
             </div>
         </div>

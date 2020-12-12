@@ -36,4 +36,22 @@ export class TasksComponent implements OnInit {
       }
     );
   }
+
+  changeState(task: Task) {
+    this.taskService.changeState(task).subscribe(
+      (res) => {
+        this.getTasks();
+      },
+      (err) => {
+        const message = err.error.message || err.statusText;
+        this.toastr.error(`${message}`, 'Alerta');
+      }
+    );
+  }
+
+  deleteTask(id){
+    console.log(id);
+    
+    this.toastr.success(`Eliminado`, 'Mensaje');
+  }
 }
