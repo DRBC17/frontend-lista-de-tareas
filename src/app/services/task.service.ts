@@ -30,7 +30,9 @@ export class TaskService {
   }
 
   deleteTask(task: Task): Observable<any> {
-    return this.http.delete<any>(`${this.endpoint}/tasks/${task._id}`);
+    console.log(task._id);
+    
+    return this.http.delete<any>(`${this.endpoint}/task/${task._id}`);
   }
 
   changeState(task: Task): Observable<any> {

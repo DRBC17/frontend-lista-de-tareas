@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Task } from 'src/app/models/task';
 import { TaskService } from 'src/app/services/task.service';
+import Swal from 'sweetalert2';
 import { expand, flyInOut } from '../../animations/app.animation';
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -13,6 +15,7 @@ import { expand, flyInOut } from '../../animations/app.animation';
 })
 export class TasksComponent implements OnInit {
   public tasks: Task[];
+
   constructor(
     private taskService: TaskService,
     private toastr: ToastrService,
@@ -28,7 +31,6 @@ export class TasksComponent implements OnInit {
     this.taskService.getTasks().subscribe(
       (res) => {
         this.tasks = res.tasks;
-        console.log(res);
       },
       (err) => {
         const message = err.error.message || err.statusText;
@@ -49,9 +51,31 @@ export class TasksComponent implements OnInit {
     );
   }
 
-  deleteTask(id){
-    console.log(id);
-    
-    this.toastr.success(`Eliminado`, 'Mensaje');
+  deleteTask(task: Task) {
+    Swal.fire({
+      title: 'Eliminar tarea',
+      text: '¿Esta seguro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0d6efd',
+      cancelButtonColor: '#dc3545',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.taskService.deleteTask(task).subscribe(
+          (res) => {
+            this.toastr.success(`${res.message}`, 'Mensaje');
+            this.getTasks();
+          },
+          (err) => {
+            console.log(err);
+
+            const message = err.error.message || err.statusText;
+            this.toastr.error(`${message}`, 'Alerta');
+          }
+        );
+      }
+    });
   }
 }
