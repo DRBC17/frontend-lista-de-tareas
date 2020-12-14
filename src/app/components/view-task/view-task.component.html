@@ -1,0 +1,26 @@
+<div class="col-md-6 mx-auto" [@expand]>
+    <div class="card bg-bone">
+        <div class="card-header bg-dark text-center h4 p-3 text-bone">
+            Mi tarea
+        </div>
+        <div class="card-body m-4">
+            <form novalidate [formGroup]="viewTaskForm">
+                <div class="mb-3">
+                    <label for="title" class="form-label h4">Titulo</label>
+                    <input type="title" class="form-control" id="title" formControlName="title" />
+
+                    <!-- Fin de alerta -->
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label h4">Descripción</label>
+                    <textarea type="description" class="form-control" id="description" rows="7"
+                        style="overflow:auto;resize:none" formControlName="description"></textarea>
+                </div>
+            </form>
+            <!-- <hr /> -->
+            <div class="d-grid col-6 mx-auto text-center" style="margin-top: 2.1875rem">
+                <a class="btn btn-outline-secondary" [routerLink]="['/tasks']">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>

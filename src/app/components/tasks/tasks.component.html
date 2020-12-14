@@ -1,0 +1,85 @@
+<div class="card mx-auto bg-bone mb-5">
+    <div class="card-header bg-dark text-bone text-center h4 p-3">Mis tareas</div>
+    <div class="card-body container">
+
+        <a [routerLink]="['/create_task']" class="btn btn-outline-primary ms-auto d-grid" style="width: 120px;">
+            Agregar
+        </a>
+        <!-- Inicio listar tareas -->
+        <div class="mb-3 mt-1">
+            <!-- Tareas Pendientes -->
+            <h3 class="m-1">Pendientes</h3>
+            <hr />
+            <div class="d-list-group">
+                <div *ngFor="let task of tasks">
+                    <div class="d-list-group-item group-items" *ngIf="!task.completed" appHighlight [@expand]>
+                        <div style="width: 3%;margin-top: auto;margin-bottom: auto;margin-right:2.5rem;">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheck"
+                                    style=" cursor: pointer;" [checked]="task.completed" (click)="changeState(task)" />
+
+
+                            </div>
+                        </div>
+                        <div style="width: 87%;  cursor: pointer;" class="me-auto" (click)="viewTask(task._id)">
+
+                            <label for="flexSwitchCheck" class="text-break" style=" cursor: pointer;"
+                                [class.text-decoration-line-through]="task.completed"> {{ task.title }}</label>
+                            <div class="m-1 text-primary">
+                                {{ task.updatedAt | amLocale: "es" | amTimeAgo | titlecase }}
+                            </div>
+                        </div>
+                        <div style="width: 10%;">
+                            <a [routerLink]="['/update_task/'+task._id]" class="btn btn-outline-success m-1">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <button class="btn btn-outline-danger m-1" (click)="deleteTask(task)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tareas completadas -->
+        <div class="mb-3 mt-1">
+            <h3 class="m-1">Completadas</h3>
+            <hr />
+            <div class="d-list-group">
+                <div *ngFor="let task of tasks">
+                    <div class="d-list-group-item group-items" *ngIf="task.completed" appHighlight [@expand]>
+                        <div style="width: 3%;margin-top: auto;margin-bottom: auto;margin-right:2.5rem;">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheck"
+                                    style=" cursor: pointer;" [checked]="task.completed" (click)="changeState(task)" />
+
+
+                            </div>
+                        </div>
+                        <div style="width: 87%; cursor: pointer;" class="me-auto" (click)="viewTask(task._id)">
+
+                            <label for="flexSwitchCheck" class="text-break" style=" cursor: pointer;"
+                                [class.text-decoration-line-through]="task.completed"> {{ task.title }}</label>
+                            <div class="m-1 text-primary">
+                                {{ task.updatedAt | amLocale: "es" | amTimeAgo | titlecase }}
+                            </div>
+                        </div>
+                        <div style="width: 10%;">
+                            <button class="btn btn-outline-success m-1" [disabled]="task.completed">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button class="btn btn-outline-danger m-1" (click)="deleteTask(task)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin listar tareas -->
+    </div>
+</div>
+<a [routerLink]="['/create_task']" class="float border border-5 border-primary rounded-circle">
+    <i class="fa fa-plus my-float"></i>
+</a>

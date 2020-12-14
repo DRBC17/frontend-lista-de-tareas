@@ -1,0 +1,74 @@
+<div class="col-md-6 mx-auto" [@expand]>
+    <div class="card bg-bone">
+        <div class="card-header bg-dark text-center h4 p-3 text-bone">
+            Crear tarea
+        </div>
+        <div class="card-body m-4">
+            <form novalidate [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
+                <div class="mb-3">
+                    <label for="title" class="form-label h4">Titulo</label>
+                    <input type="title" class="form-control" id="title" formControlName="title" [class.is-invalid]="
+              createForm.get('title').invalid &&
+              (createForm.get('title').touched || createForm.get('title').dirty)
+            " [class.is-valid]="
+              createForm.get('title').valid && createForm.get('title').dirty
+            " />
+                    <!-- Inicio de alerta -->
+                    <div class="d-alert-danger">
+                        <div class="container-error-message" *ngIf="
+                createForm.get('title').hasError('required') &&
+                (createForm.get('title').touched ||
+                  createForm.get('title').dirty)
+              ">
+                            El titulo es requerido
+                        </div>
+                        <div class="container-error-message" *ngIf="
+                createForm.get('title').hasError('minlength') &&
+                createForm.get('title').dirty
+              ">
+                            El titulo debe tener al menos 2 caracteres
+                        </div>
+                    </div>
+                    <!-- Fin de alerta -->
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label h4">Descripción</label>
+                    <textarea type="description" class="form-control" id="description" formControlName="description"
+                        rows="7" style="overflow:auto;resize:none" [class.is-invalid]="
+              createForm.get('description').invalid &&
+              (createForm.get('description').touched ||
+                createForm.get('description').dirty)
+            " [class.is-valid]="
+              createForm.get('description').valid &&
+              createForm.get('description').dirty
+            "></textarea>
+                    <!-- Inicio de alerta -->
+                    <div class="d-alert-danger">
+                        <div class="container-error-message" *ngIf="
+                createForm.get('description').hasError('required') &&
+                (createForm.get('description').touched ||
+                  createForm.get('description').dirty)
+              ">
+                            La descripción es requerida
+                        </div>
+                        <div class="container-error-message" *ngIf="
+                createForm.get('description').hasError('minlength') &&
+                createForm.get('description').dirty
+              ">
+                            La descripción debe tener al menos 2 caracteres
+                        </div>
+                    </div>
+                    <!-- Fin de alerta -->
+                </div>
+                <button class="btn btn-primary d-grid col-6 mx-auto"
+                    style="margin-top: 2.1875rem; margin-bottom: 2.1875rem" [disabled]="createForm.invalid">
+                    Crear
+                </button>
+            </form>
+            <hr />
+            <div class="d-grid col-6 mx-auto text-center" style="margin-top: 2.1875rem">
+                <a class="btn btn-outline-secondary" [routerLink]="['/tasks']">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>

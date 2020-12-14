@@ -1,0 +1,108 @@
+<div class="col-md-6 mx-auto" [@expand]>
+  <div class="card bg-bone">
+    <div class="card-header bg-dark h4 text-center p-3 text-bone">
+      Registrarse
+    </div>
+    <div class="card-body m-4">
+      <form novalidate [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
+        <div class="mb-3">
+          <label for="email" class="form-label h4">Correo electrónico</label>
+          <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="
+              signupForm.get('email').invalid &&
+              (signupForm.get('email').dirty || signupForm.get('email').touched)
+            " [class.is-valid]="
+              signupForm.get('email').valid &&
+              signupForm.get('email').dirty 
+            " />
+          <!-- Inicio de alerta -->
+          <div class="d-alert-danger">
+            <div class="container-error-message" *ngIf="
+                signupForm.get('email').hasError('required') &&
+                (signupForm.get('email').dirty || signupForm.get('email').touched)
+              ">
+              El correo electrónico es requerido
+            </div>
+
+            <div class="container-error-message" *ngIf="
+                signupForm.get('email').hasError('pattern') &&
+                signupForm.get('email').dirty
+              ">
+              El correo electrónico no es valido
+            </div>
+          </div>
+          <!-- Fin de alerta -->
+          <!-- {{signupForm.get('email').errors | json}} -->
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label h4">Contraseña</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"
+            [class.is-invalid]="
+              signupForm.get('password').invalid &&
+              (signupForm.get('password').dirty ||
+                signupForm.get('password').touched)
+            " [class.is-valid]="
+              signupForm.get('password').valid &&
+              signupForm.get('password').dirty 
+            " />
+          <!-- Inicio de alerta -->
+          <div class="d-alert-danger">
+            <div class="container-error-message" *ngIf="
+                signupForm.get('password').hasError('required') &&
+                (signupForm.get('password').dirty ||
+                signupForm.get('password').touched)
+              ">
+              La contraseña es requerida
+            </div>
+            <div class="container-error-message" *ngIf="
+                signupForm.get('password').hasError('pattern') &&
+                signupForm.get('password').dirty
+              ">
+              La contraseña debe tener:<br />
+              > Entre 6 y 26 caracteres<br />
+              > Al menos un numero<br />
+              > Al menos una minúscula <br />
+              > Al menos una mayúscula
+            </div>
+          </div>
+
+          <!-- Fin de alerta -->
+          <!-- {{signupForm.get('password').errors | json}} -->
+        </div>
+
+        <div class="mb-3">
+          <label for="repeatPassword" class="form-label h4">Confirmar contraseña</label>
+          <input type="password" class="form-control" id="repeatPassword" formControlName="repeatPassword"
+            [class.is-invalid]="
+              signupForm.get('repeatPassword').invalid &&
+              (signupForm.get('repeatPassword').dirty ||
+                signupForm.get('repeatPassword').touched)
+            " [class.is-valid]="
+              signupForm.get('repeatPassword').valid &&
+              signupForm.get('repeatPassword').dirty
+            " />
+          <!-- Inicio de alerta -->
+          <div class="d-alert-danger">
+            <div class="container-error-message" *ngIf="
+                signupForm.get('repeatPassword').hasError('required') &&
+                (signupForm.get('repeatPassword').dirty ||
+                signupForm.get('repeatPassword').touched)
+              ">
+              La contraseña de confirmación es requerida
+            </div>
+          </div>
+
+          <!-- Fin de alerta -->
+          <!-- {{signupForm.get('password').errors | json}} -->
+        </div>
+
+        <button class="btn btn-primary d-grid col-6 mx-auto" style="margin-top: 2.1875rem;margin-bottom: 2.1875rem;" [disabled]="signupForm.invalid">
+          Registrarse
+        </button>
+      </form>
+      <hr />
+      <div class="d-grid col-6 mx-auto text-center"  style="margin-top: 2.1875rem;">
+        <a class="btn btn-outline-secondary" [routerLink]="['/signin']">Iniciar sesión</a>
+      </div>
+    </div>
+  </div>
+</div>

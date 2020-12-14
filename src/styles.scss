@@ -1,1 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~ngx-toastr/toastr";
+
+body {
+  background: #654ea3; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #eaafc8,
+    #654ea3
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #eaafc8,
+    #654ea3
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+// $alert-color: #a31624;
+$alert-color: #a94442;
+$alert-background: #f8d7da;
+$alert-border: #f5c6cb;
+
+$success-color: #42a948;
+$success-background: #69bd77;
+$success-border: #5adf70;
+
+.d-alert-danger {
+  color: $alert-color;
+  margin-bottom: 0.3125rem;
+}
+.container-error-message {
+  padding: 0.1875rem;
+}
+
+.is-valid {
+  border-left: 5px solid #42a948; /* green */
+}
+
+.is-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+$blanco-hueso: #f0f0f0;
+
+.bg-bone {
+  background-color: $blanco-hueso;
+}
+
+.text-bone {
+  color: $blanco-hueso;
+}
+
+.d-list-group-item {
+  position: relative;
+  display: block;
+  padding: 1.25rem 1.75rem;
+  margin-top: 0.4rem;
+  background-color: #fff;
+  //   border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.d-list-group {
+  display: flex;
+  flex-direction: column;
+}
+
+$background-color-h: #d1c4e9;
+$border-color-h: #654ea3;
+
+.highlight {
+  background-color: $background-color-h;
+  border: 1px solid $border-color-h;
+  cursor: pointer;
+  z-index: 1;
+  transform: scale(1.01);
+}
+.group-items {
+  padding-left: 45px;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .group-items {
+    padding-left: 15px;
+    // background-color: red;
+  }
+}
+
+.footer {
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
